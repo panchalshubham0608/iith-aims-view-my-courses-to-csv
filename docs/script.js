@@ -154,7 +154,7 @@ function filterInputChange() {
     key = key.trim();
     if (key in suggestions) {
         text = text.trim();
-        addAutocomplete(Array.from(suggestions[key]).filter(item => item.startsWith(text)).map(item => key + ':' + item));
+        addAutocomplete(Array.from(suggestions[key]).filter(item => item.startsWith(text)).sort().map(item => key + ':' + item));
         return;
     }    
 }

@@ -59,6 +59,7 @@ function parse_csv(text) {
 
 // displays the content in proper format
 function display_records(data) {
+    let credits = 0.0;
     let div = document.getElementById('courseList');
     div.innerHTML = ``;
     let table = document.createElement('table');
@@ -80,9 +81,15 @@ function display_records(data) {
             let td = document.createElement('td');
             td.innerText = record[header[j]];
             tr.appendChild(td);
+            if (header[j] === 'Credits')
+                credits += parseFloat(record[header[j]]);
         }
         tbody.appendChild(tr);
     }
     table.appendChild(tbody);
     div.appendChild(table);
+
+    let p = document.createElement('p');
+    p.innerHTML = `<strong>Total credits</strong>: ${credits}`;
+    div.appendChild(p);
 }
