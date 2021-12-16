@@ -1,0 +1,63 @@
+* {
+    box-sizing: border-box;
+}
+
+table,
+th,
+td {
+    padding: 10px;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+#courseList thead tr:first-child {
+    background-color: #404040;
+    color: #FFFFFF;
+    -webkit-border-radius: 10px 10px 10px 10px;
+    -moz-border-radius: 10px 10px 10px 10px;
+    border-radius: 10px 10px 10px 10px;
+    -webkit-box-shadow: 3px 5px 10px grey;
+    -moz-box-shadow: 3px 5px 10px grey;
+    box-shadow: 3px 5px 10px grey;
+}
+
+.filters {
+    display: flex;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+.filter {
+    padding: 10px;
+    background-color: #ededed;
+    border: 1px solid #ededed;
+    border-radius: 5px;
+    margin-right: 10px;
+    margin-top: 10px;
+}
+
+.close-icon{
+    padding-left: 10px;
+    cursor: pointer;
+}
+
+
+#autocomplete {
+    box-shadow: 3px 5px 10px grey;
+    max-height: 250px;
+    overflow-y: scroll;
+}
+#autocomplete > div {
+    padding: 5px;
+    /* cursor: pointer; */
+}
+#autocomplete > div:hover {
+    background-color: #cfe2ff;
+}
+
+.select {
+    background-color: #cfe2ff;
+}
+
