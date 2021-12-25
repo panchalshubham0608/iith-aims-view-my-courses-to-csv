@@ -179,5 +179,9 @@ window.onload = function () {
             autocomplete.innerHTML = ``;
         }
     });
+
+    // for debug purpose!
+    // [header, records] = parse_csv(text);
+    // display_records(records);
 }
 

@@ -71,11 +71,13 @@ function display_records(data) {
         th.innerText = header[i];
         tr.appendChild(th);
     }
+    tr.appendChild(document.createElement('th'));
     thead.appendChild(tr);
     table.appendChild(thead);
     let tbody = document.createElement('tbody');
     for (let i = 0; i < data.length; i++) {
         let record = data[i];
+        // console.log(record);
         let tr = document.createElement('tr');
         for (let j = 0; j < header.length; j++) {
             let td = document.createElement('td');
@@ -84,12 +86,23 @@ function display_records(data) {
             if (header[j] === 'Credits')
                 credits += parseFloat(record[header[j]]);
         }
+        let td = document.createElement('td');
+        let span = document.createElement('span');
+        span.innerHTML = `<i class='fa fa-times'></i>`;
+        span.style = `cursor: pointer;`;
+        span.onclick = () => {            
+            let items = [...data];
+            items.splice(i, 1);
+            display_records(items);
+        };
+        td.appendChild(span);
+        tr.appendChild(td);
         tbody.appendChild(tr);
     }
     table.appendChild(tbody);
     div.appendChild(table);
 
     let p = document.createElement('p');
-    p.innerHTML = `<strong>Total credits</strong>: ${credits}`;
+    p.innerHTML = `<strong>Total credits</strong>: ${credits.toFixed(2)}`;
     div.appendChild(p);
 }
