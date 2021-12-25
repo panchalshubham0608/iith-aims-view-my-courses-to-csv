@@ -97,9 +97,10 @@ function apply_filters() {
     let data = records.filter(item => {
         let consider = true;
         for (let filter in filters) {
-            if (filter in item && !item[filter].startsWith(filters[filter])) {
-                consider = false;
-                break;
+            if (filter in item) {
+                if (filter === 'Grade' && item[filter] !== filters[filter]) consider = false;
+                else if (filter !== 'Grade' && !item[filter].startsWith(filters[filter])) consider = false;
+                if (!consider) break;
             }
         }
         return consider;
@@ -109,16 +110,15 @@ function apply_filters() {
 
 
 
-
 //=========================================================================================
 // ============================ AUTO-COMPLETE
 //=========================================================================================
 
 function addAutocomplete(items) {
-    let autocomplete = document.getElementById('autocomplete');    
-    autocomplete.innerHTML = ``;    
+    let autocomplete = document.getElementById('autocomplete');
+    autocomplete.innerHTML = ``;
     suggestionIndex = -1;
-    for(let i = 0; i < items.length; i++) {
+    for (let i = 0; i < items.length; i++) {
         let item = items[i];
         let div = document.createElement('div');
         div.innerText = item;
@@ -156,7 +156,7 @@ function filterInputChange() {
         text = text.trim();
         addAutocomplete(Array.from(suggestions[key]).filter(item => item.startsWith(text)).sort().map(item => key + ':' + item));
         return;
-    }    
+    }
 }
 
 
@@ -174,7 +174,7 @@ window.onload = function () {
     filterInput.addEventListener('click', filterInputChange);
     document.addEventListener('click', (event) => {
         let target = event.target;
-        if (target.id !== 'filterInput'){
+        if (target.id !== 'filterInput') {
             let autocomplete = document.getElementById('autocomplete');
             autocomplete.innerHTML = ``;
         }
